@@ -3,6 +3,7 @@ import streamlit as st
 import json
 import pandas as pd
 from PIL import Image, ImageOps, ImageDraw
+import os
 
 # Streamlit page configuration
 st.set_page_config(page_title="Text2SQL Agent", page_icon=":robot_face:", layout="wide")
@@ -32,8 +33,10 @@ end_session_button = st.button("End Session")
 # Sidebar for user input
 st.sidebar.title("Trace Data")
 
-
-
+# Get the root directory of the project
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+human_image_path = os.path.join(root_dir, 'images/human_face.png')
+robot_image_path = os.path.join(root_dir, 'images/robot_face.jpg')
 
 # Session State Management
 if 'history' not in st.session_state:
@@ -104,12 +107,12 @@ if end_session_button:
 # Display conversation history
 st.write("## Conversation History")
 
-for chat in reversed(st.session_state['history']):
+for idx, chat in enumerate(reversed(st.session_state['history'])):
     
     # Creating columns for Question
     col1_q, col2_q = st.columns([2, 10])
     with col1_q:
-        human_image = Image.open('images/human_face.png')
+        human_image = Image.open(human_image_path)
         circular_human_image = crop_to_circle(human_image)
         st.image(circular_human_image, width=125)
     with col2_q:
@@ -119,14 +122,14 @@ for chat in reversed(st.session_state['history']):
     col1_a, col2_a = st.columns([2, 10])
     if isinstance(chat["answer"], pd.DataFrame):
         with col1_a:
-            robot_image = Image.open('images/robot_face.jpg')
+            robot_image = Image.open(robot_image_path)
             circular_robot_image = crop_to_circle(robot_image)
             st.image(circular_robot_image, width=100)
         with col2_a:
             st.dataframe(chat["answer"])
     else:
         with col1_a:
-            robot_image = Image.open('images/robot_face.jpg')
+            robot_image = Image.open(robot_image_path)
             circular_robot_image = crop_to_circle(robot_image)
             st.image(circular_robot_image, width=150)
         with col2_a:
