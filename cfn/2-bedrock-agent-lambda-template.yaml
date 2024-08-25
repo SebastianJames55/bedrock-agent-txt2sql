@@ -216,7 +216,7 @@ Resources:
       IdleSessionTTLInSeconds: 900
       ActionGroups:
         - ActionGroupName: "query-athena"
-          Description: "This action group is used to query information about customers and procedures"
+          Description: "This action group is used to query information about customers and products"
           ActionGroupExecutor:
             Lambda: !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:AthenaQueryLambda-${AWS::AccountId}'
           ApiSchema:
@@ -339,7 +339,7 @@ Resources:
                 </athena_schema>
 
                 <athena_schema> 
-                CREATE EXTERNAL TABLE athena_db.procedures ( 
+                CREATE EXTERNAL TABLE athena_db.products ( 
                 `Procedure_ID` string, 
                 `Procedure` string, 
                 `Category` string, 
@@ -358,7 +358,7 @@ Resources:
 
               <athena_examples>
                 <athena_example> 
-                SELECT * FROM athena_db.procedures WHERE insurance = 'yes' OR insurance_covered = 'no'; 
+                SELECT * FROM athena_db.products WHERE insurance = 'yes' OR insurance_covered = 'no'; 
                 </athena_example>
 
                 <athena_example> 

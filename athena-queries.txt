@@ -5,7 +5,7 @@
 CREATE DATABASE IF NOT EXISTS athena_db;
 
 2. Create table 1:
-CREATE EXTERNAL TABLE IF NOT EXISTS athena_db.procedures (
+CREATE EXTERNAL TABLE IF NOT EXISTS athena_db.products (
   `Procedure_ID` string,
   `Procedure_Name` string,
   `Category` string,
@@ -39,9 +39,9 @@ LOCATION 's3://genai-sourcedata-jo4/';
 
 4. View table properties:
 DESCRIBE athena_db.customers;
-DESCRIBE athena_db.procedures;
+DESCRIBE athena_db.products;
 
 4. Select all records:
 SELECT procedure_id, procedure_name, category, price, duration, insurance_covered 
-FROM athena_db.procedures
+FROM athena_db.products
 WHERE insurance_covered = 'yes' OR insurance_covered = 'no';

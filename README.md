@@ -41,21 +41,21 @@ We will setup an Amazon Bedrock agent with an action group that will be able to 
 
 
 
-- Next, we will download .csv files that contain mock data for customers and procedures. Open up a terminal or command prompt, and run the following `curl` commands to download and save these files to the **Documents** folder:
+- Next, we will download .csv files that contain mock data for customers and products. Open up a terminal or command prompt, and run the following `curl` commands to download and save these files to the **Documents** folder:
 
 For **Mac**
 ```linux
-curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/mock-data-customers.csv --output ~/Documents/mock-data-customers.csv
+curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/Customers.csv --output ~/Documents/Customers.csv
 
-curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/mock-data-procedures.csv --output ~/Documents/mock-data-procedures.csv
+curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/Products.csv --output ~/Documents/Products.csv
 ```
 
 For **Windows**
 
 ```windows
-curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/mock-data-customers.csv --output %USERPROFILE%\Documents\mock-data-customers.csv
+curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/Customers.csv --output %USERPROFILE%\Documents\Customers.csv
 
-curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/mock-data-procedures.csv --output %USERPROFILE%\Documents\mock-data-procedures.csv
+curl https://raw.githubusercontent.com/build-on-aws/bedrock-agent-txt2sql/main/S3data/Products.csv --output %USERPROFILE%\Documents\Products.csv
 ```
 
 - These files are the datasource for Amazon Athena. Upload these files to S3 bucket `athena-datasource-{alias}`. Once the documents are uploaded, please review them.
@@ -114,10 +114,10 @@ LOCATION 's3://athena-datasource-{alias}/';
 ```
 
 
-- Open another query tab and create the `procedures` table by running this query. `(Remember to update the {alias} field)`:
+- Open another query tab and create the `products` table by running this query. `(Remember to update the {alias} field)`:
 
 ```sql
-CREATE EXTERNAL TABLE athena_db.procedures (
+CREATE EXTERNAL TABLE athena_db.products (
   `Procedure_Id` string,
   `Procedure` string,
   `Category` string,
@@ -138,15 +138,15 @@ LOCATION 's3://athena-datasource-{alias}/';
 
 ![Athena editor env created](images/env_created.png)
 
-- Now, lets quickly test the queries against the customers and procedures table by running the following two example queries below:
+- Now, lets quickly test the queries against the customers and products table by running the following two example queries below:
 
 ```sql
 SELECT *
-FROM athena_db.procedures
+FROM athena_db.products
 WHERE insurance = 'yes' OR insurance = 'no';
 ```
 
-![procedures query](images/procedure_query.png)
+![products query](images/procedure_query.png)
 
 
 ```sql
@@ -447,7 +447,7 @@ Here are the table schemas for the Amazon Athena database <athena_schemas>.
   </athena_schema>
   
   <athena_schema>
-  CREATE EXTERNAL TABLE athena_db.procedures (
+  CREATE EXTERNAL TABLE athena_db.products (
     `Procedure_ID` string,
     `Procedure` string,
     `Category` string,
@@ -468,7 +468,7 @@ Here are examples of Amazon Athena queries <athena_examples>.
 
 <athena_examples>
   <athena_example>
-  SELECT * FROM athena_db.procedures WHERE insurance = 'yes' OR insurance = 'no';  
+  SELECT * FROM athena_db.products WHERE insurance = 'yes' OR insurance = 'no';  
   </athena_example>
   
   <athena_example>
@@ -507,7 +507,7 @@ Here are examples of Amazon Athena queries <athena_examples>.
 
 - Example prompts for Action Groups:
 
-    1. Show me all of the procedures in the imaging category that are insured.
+    1. Show me all of the products in the imaging category that are insured.
 
     2. Show me all of the customers that are vip, and have a balance over 200 dollars.
        

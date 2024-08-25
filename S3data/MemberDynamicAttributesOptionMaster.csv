@@ -1,0 +1,11 @@
+AttributeCode, OptionCode, OptionName
+4,Y,Yes
+4,N,No
+6,W,Web
+6,C,Agent
+6,P,Partner
+9,E,Email Subscription
+9,O,Other
+10,P,Passport
+10,I,National ID
+10,D,Driving License
