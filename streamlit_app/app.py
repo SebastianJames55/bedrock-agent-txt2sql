@@ -145,13 +145,9 @@ pd.set_option('display.max_colwidth', None)
 # Define the queries and their descriptions
 query_data = {
     "Test Prompts": [
-        "Show me all procedures in the imaging category that are insured.",
-        "Return to me the number of procedures that are in the laboratory category.",
-        "Let me see the number of procedures that are either in the laboratory, imaging, or surgery category, and insured.",
-        "Return me information on all customers who have a past due amount over 70.",
-        "Provide me details on all customers who are VIP, and have a balance over 300.",
-        "Get me data of all procedures that were not insured, with customer names."
-    ]
+        "Show me details of any customer.",
+        "Return to me the number of products.",
+        "Let me see the number of customer having a child."
 }
 
 # Create DataFrame

@@ -102,8 +102,8 @@ Resources:
                   bucket = os.environ.get('S3BucketName')
                   
                   urls = {
-                      "customers/mock-data-customers.csv": "https://github.com/build-on-aws/bedrock-agent-txt2sql/raw/main/S3data/mock-data-customers.csv",
-                      "procedures/mock-data-procedures.csv": "https://github.com/build-on-aws/bedrock-agent-txt2sql/raw/main/S3data/mock-data-procedures.csv"
+                      "customers/Customers.csv": "https://github.com/build-on-aws/bedrock-agent-txt2sql/raw/main/S3data/Customers.csv",
+                      "products/Products.csv": "https://github.com/build-on-aws/bedrock-agent-txt2sql/raw/main/S3data/Products.csv"
                   }
                   
                   http = urllib3.PoolManager()
@@ -145,17 +145,17 @@ Resources:
           - Path: !Sub "s3://${S3BucketName}/customers/"
       TablePrefix: 'customers_'
   
-  GlueCrawlerProcedures:
+  GlueCrawlerProducts:
     Type: 'AWS::Glue::Crawler'
     DependsOn: CopyDataCustomResource
     Properties:
       DatabaseName: !Ref AthenaDatabaseName
-      Name: !Sub "${AthenaDatabaseName}-crawler-procedures"
+      Name: !Sub "${AthenaDatabaseName}-crawler-products"
       Role: !GetAtt GlueServiceRole.Arn
       Targets:
         S3Targets:
-          - Path: !Sub "s3://${S3BucketName}/procedures/"
-      TablePrefix: 'procedures_'
+          - Path: !Sub "s3://${S3BucketName}/products/"
+      TablePrefix: 'products_'
   
   GlueServiceRole:
     Type: 'AWS::IAM::Role'
@@ -225,15 +225,15 @@ Resources:
         Parameters: 
           'EXTERNAL': 'TRUE'
   
-  GlueTableProcedures:
+  GlueTableProducts:
     Type: 'AWS::Glue::Table'
-    DependsOn: GlueCrawlerProcedures
+    DependsOn: GlueCrawlerProducts
     Properties: 
       CatalogId: !Ref 'AWS::AccountId'
       DatabaseName: !Ref AthenaDatabaseName
       TableInput: 
-        Name: 'procedures'
-        Description: 'Procedures table'
+        Name: 'products'
+        Description: 'Products table'
         StorageDescriptor: 
           Columns: 
             - Name: 'Procedure_Id'
@@ -250,7 +250,7 @@ Resources:
               Type: 'string'
             - Name: 'Customer_Id'
               Type: 'int'
-          Location: !Sub "s3://${S3BucketName}/procedures/"
+          Location: !Sub "s3://${S3BucketName}/products/"
           InputFormat: 'org.apache.hadoop.mapred.TextInputFormat'
           OutputFormat: 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
           SerdeInfo: 

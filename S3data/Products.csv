@@ -1,0 +1,51 @@
+ProductID,ProductName,Category,Price,ProductStatus
+1,Agree,Health & Beauty,15.24,Discontinued
+2,Share,Health & Beauty,706.22,Active
+3,Environmental,Home & Kitchen,736.48,Discontinued
+4,City,Electronics,937.07,Discontinued
+5,Carry,Clothing,819.47,Discontinued
+6,Major,Sports,219.45,Out of Stock
+7,Environment,Books,257.94,Out of Stock
+8,High,Books,461.21,Discontinued
+9,Break,Electronics,489.67,Discontinued
+10,Question,Toys,918.43,Discontinued
+11,Recently,Home & Kitchen,866.84,Discontinued
+12,Hold,Home & Kitchen,180.92,Out of Stock
+13,Course,Clothing,198.37,Discontinued
+14,Blood,Automotive,608.04,Discontinued
+15,Ground,Electronics,35.82,Discontinued
+16,Simple,Clothing,616.63,Active
+17,Different,Toys,207.26,Discontinued
+18,Everybody,Home & Kitchen,856.72,Discontinued
+19,Production,Health & Beauty,624.03,Active
+20,Your,Home & Kitchen,702.27,Active
+21,Respond,Sports,478.47,Out of Stock
+22,Head,Home & Kitchen,131.08,Out of Stock
+23,Development,Electronics,564.71,Discontinued
+24,Debate,Automotive,207.43,Out of Stock
+25,Eight,Electronics,779.01,Active
+26,Year,Sports,420.19,Discontinued
+27,Task,Toys,365.5,Out of Stock
+28,Sure,Books,387.27,Active
+29,Space,Toys,7.99,Out of Stock
+30,Defense,Electronics,841.5,Out of Stock
+31,Stand,Health & Beauty,168.33,Discontinued
+32,Song,Sports,49.93,Active
+33,Arm,Health & Beauty,31.86,Out of Stock
+34,Produce,Home & Kitchen,848.97,Active
+35,Nor,Toys,478.79,Out of Stock
+36,Street,Books,472.64,Discontinued
+37,Player,Home & Kitchen,298.74,Active
+38,Eye,Automotive,487.17,Active
+39,Prove,Health & Beauty,557.55,Discontinued
+40,About,Toys,341.15,Out of Stock
+41,Simple,Electronics,230.92,Active
+42,Level,Books,784.93,Out of Stock
+43,Security,Health & Beauty,602.04,Active
+44,Blood,Automotive,692.57,Discontinued
+45,Company,Health & Beauty,364.3,Discontinued
+46,Talk,Books,233.27,Active
+47,Skin,Electronics,501.85,Discontinued
+48,Keep,Home & Kitchen,416.99,Active
+49,Service,Toys,600.8,Out of Stock
+50,Address,Automotive,669.28,Discontinued

@@ -1,0 +1,72 @@
+ 
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    Email VARCHAR(100),
+    Phone VARCHAR(15),
+    SignUpDate DATE,
+    Location VARCHAR(100),
+    Age INT,
+    Gender VARCHAR(10),
+    MaritalStatus VARCHAR(10), --master data
+    HasChildren BOOLEAN,
+    IncomeBracket VARCHAR(50),
+    MemberStatus VARCHAR(5) -- master data
+);
+
+ 
+CREATE TABLE Purchases (
+    PurchaseID INT PRIMARY KEY,
+    CustomerID INT,
+    ProductID INT,
+    PurchaseDate DATE,,
+    PurchaseStatus VARCHAR(5) -- master data
+    PurchaseAmount DECIMAL(10, 2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+ 
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Category VARCHAR(50),
+    Price DECIMAL(10, 2),
+    ProductStatus VARCHAR(5) -- master data
+);
+
+ 
+CREATE TABLE LoyaltyPoints (
+    CustomerID INT PRIMARY KEY,
+    Points INT,
+    LastUpdated DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+Create table  MemberDynamicAttributesOptionMaster (
+AttributeCode INT,
+OptionCode Varchar,
+OptionName Varchar);
+
+ 
+CREATE TABLE MemberDynamicAttributesMaster (
+    AttributeCode INT, -- stores the code of any defined Dynamic attributes
+    AttributeName VARCHAR(200) -- stores the names of the Dynamic attributes
+    );
+
+ 
+
+CREATE TABLE MemberDynamicAttributes (
+    CustomerID INT,
+    AttributeCode INT,
+    AttributeValue VARCHAR(200) -- stores the value of the Dynamic attributes for the member
+    );
+
+The Customers table stores information about each customer.
+The Purchases table logs each purchase made by a customer.
+The Products table contains information about the products available for purchase.
+The LoyaltyPoints table keeps track of the loyalty points earned by each customer.
+The MemberDynamicAttributesMaster table keeps track of all the Dynamic Attributes that are defined in the system.
+The MemberDynamicAttributes table keeps track of all the Dynamic Attribute values for each member. Members do not need to have values for all Dynamic Attributes and only rows that are present have values set.
+The MemberDynamicAttributesOptionMaster table keeps track of master data (description) of Attrinute values, if applicable
+
